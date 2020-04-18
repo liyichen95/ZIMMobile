@@ -339,6 +339,7 @@
 
               .center(content2)
               .alp(0)
+              .scaleTo(content2, 60, 80)
               .animate({
                 props: {
                   alpha: 1,
@@ -346,7 +347,8 @@
                 wait: 200,
               })
               .addTo(page2)
-              .pos(null, 600, CENTER);
+              
+              .pos(null, 540, CENTER);
 
             star.animate({
               props: {
@@ -380,7 +382,8 @@
                 wait: 200,
               })
               .addTo(page2)
-              .pos(null, 600, CENTER);
+              .scaleTo(content2, 60, 80)
+              .pos(null, 540, CENTER);
               stage.update();
 
             star.animate({
@@ -558,7 +561,8 @@
                 wait: 200,
               })
               .addTo(page3)
-              .pos(null, 600, CENTER);
+              .scaleTo(content3, 60, 80)
+              .pos(null, 540, CENTER);
 
             stage.update();
           });
@@ -747,7 +751,8 @@
                 wait: 200,
               })
               .addTo(page4)
-              .pos(null, 600, CENTER);
+              .scaleTo(content4, 60, 80)
+              .pos(null, 540, CENTER);
 
   
 
@@ -986,7 +991,8 @@
                 wait: 200,
               })
               .addTo(page5)
-              .pos(null, 600, CENTER);
+              .scaleTo(content5, 60, 80)
+              .pos(null, 540, CENTER);;
 
   
 
@@ -1222,12 +1228,12 @@
         const pages = new Pages(
           // swipe:["right", "left", "down", "up"]
           [
-            { page: page1, swipe: [page2, page2, "help", "help"] },
-            { page: page2, swipe: [page1, page1, "help", "help"] },
-            { page: page3, swipe: [page2, null, null, null] },
-            { page: page4, swipe: [page3, null, null, null] },
-            { page: page5, swipe: [page4, null, null, null] },
-            { page: page6, swipe: [page4, null, null, null] },
+            { page: page1, swipe: [page5, page2, "help", "help"] },
+            { page: page2, swipe: [page1, page3, "help", "help"] },
+            { page: page3, swipe: [page2, page4, null, null] },
+            { page: page4, swipe: [page3, page5, null, null] },
+            { page: page5, swipe: [page4, page6, null, null] },
+            { page: page6, swipe: [page5, page1, null, null] },
             // { page: page3, swipe: [page2, null, null, null] },
           ],
           "slide",
