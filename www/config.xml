@@ -5,10 +5,10 @@
         id        = "com.danzen.tilty"
         version   = "3.0.1">
 
-    <name>Tilty</name>
+    <name>COVID-19 Tips</name>
 
     <description>
-        Mobile game to keep your device level while jostling others!
+        Mobile app that provide information of COVID-19 prevention tips!
     </description>
 
     <author href="http://danzen.com" email="support@danzen.com">
@@ -91,7 +91,7 @@
 
 	</platform>
 
-	<platform name="android">
+<!-- 	<platform name="android">
 		<icon src="icon/android/ldpi.png" width="36" height="36" qualifier="ldpi" />
 		<icon src="icon/android/mdpi.png" width="48" height="48" qualifier="mdpi" />
 		<icon src="icon/android/hdpi.png" width="72" height="72" qualifier="hdpi" />
@@ -105,9 +105,9 @@
 		<icon src="icon/winphone/tileicon.png" width="173" height="173" role="background" />
 	</platform>
 
-   	<platform name="blackberry"><!-- probably not supported at this time in Build -->
+   	<platform name="blackberry">
     	<icon src="icon/blackberry/icon-80.png" width="80" height="80" />
-	</platform>
+	</platform> -->
 
     <!-- Define app splash screen for each platform. -->
 	<!-- see 'Make Mobile Splash Screens.jsx' (GitHub root directory) for auto creation in photoshop -->
@@ -136,9 +136,9 @@
 		<splash src="splash/portrait/android/portrait-xxxhdpi.png" width="1280" height="1920" qualifier="port-xxxhdpi" />
 	</platform>
 
-	<platform name="winphone">
+<!-- 	<platform name="winphone">
 		<splash src="splash/portrait/winphone/SplashScreenImage.jpg" width="480" height="800" />
-    </platform>
+    </platform> -->
 
 	<gap:config-file platform="ios" parent="CFBundleShortVersionString">
     <string>100</string>

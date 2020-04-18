@@ -22,6 +22,13 @@
         "circle@2x.png",
         "water@2x.png",
         "star@2x.png",
+        "hover.ogg",
+        "click.wav",
+        "magic.wav",
+        "water.wav",
+        "correct.wav",
+        "positive.wav",
+        "backgroundMusic.mp3"
       ];
 
       let path = "assets/";
@@ -207,7 +214,9 @@
 
  
         page1.startButton.on("mousedown", () => {
-          // pages.go(page2, "right", "slide", 1000);
+          asset("click.wav").play();
+          asset("backgroundMusic.mp3").play({volume:.1});
+
           pages.go(page2, "right");
         });
 
@@ -272,7 +281,11 @@
           .centerReg(content2)
           .pos(200, null)
           .drag();
-        
+
+          rightHand.on("mouseover", function(e) {
+                        asset("hover.ogg").play();
+                    });
+
         var leftHand = asset("left-hand@2x.png")
           .sca(0.7)
           .addTo(page2)
@@ -280,7 +293,9 @@
           .pos(120, null)
           .drag();
             
-   
+          leftHand.on("mouseover", function(e) {
+                        asset("hover.ogg").play();
+                    });
 
         var star = asset("star@2x.png")
           .sca(0.7)
@@ -327,6 +342,7 @@
 
         leftHand.on("pressup", function (e) {
           if (leftHand.hitTestBounds(hit2)) {
+            asset("magic.wav").play();
             var title = new Label({
               text:
                 "Hands touch many surfaces and can  \npick up viruses. Once contaminated, \nhands can transfer the virus to your \neyes, nose or mouth.  From there, the \nvirus can  enter your body and can\n make you sick.",
@@ -336,7 +352,6 @@
               lineHeight: 30,
               align: "left",
             })
-
               .center(content2)
               .alp(0)
               
@@ -364,6 +379,7 @@
 
         rightHand.on("pressup", function (e) {
           if (rightHand.hitTestBounds(hit)) {
+            asset("magic.wav").play();
             var title = new Label({
               text:
                 "Hands touch many surfaces and can  \npick up viruses. Once contaminated, \nhands can transfer the virus to your \neyes, nose or mouth.  From there, the \nvirus can  enter your body and can\n make you sick.",
@@ -373,7 +389,6 @@
               lineHeight: 30,
               align: "left",
             })
-
               .center(content2)
               .alp(0)
               .animate({
@@ -414,9 +429,9 @@
           label: backText,
           width: 300,
           height: 100,
-          backgroundColor: "orange",
+          backgroundColor: "#6370AA",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#AEC5D3",
           corner: 20,
           mouse:"pointer"
         })
@@ -427,7 +442,7 @@
           .ord(10);
 
           page2.backButton.on("mousedown", () => {
-          // pages.go(page2, "right", "slide", 1000);
+            asset("click.wav").play();
           pages.go(page1, "left");
         });
 
@@ -450,7 +465,7 @@
           height: 100,
           backgroundColor: "orange",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#5C4A60",
           corner: 20,
           mouse:"pointer"
         })
@@ -460,6 +475,7 @@
         .pos(320, null);
 
         page2.nextButton.on("mousedown", () => {
+          asset("click.wav").play();
           pages.go(page3, "right");
         });
 
@@ -529,12 +545,21 @@
           .pos(220, 260)
           .alp(0);
 
+          
+
         var waterTap = asset("tap@2x.png")
           .sca(0.6)
           .addTo(page3)
           .centerReg(content3)
           .pos(300, 200)
+
+        waterTap.on("mouseover", function(e) {
+                        asset("hover.ogg").play();
+                    });
+
+        var waterTap = asset("tap@2x.png")
           .tap(function () {
+            asset("water.wav").play();
             water.animate({
               props: {
                 alpha: 1,
@@ -597,9 +622,9 @@
           label: backText,
           width: 300,
           height: 100,
-          backgroundColor: "orange",
+          backgroundColor: "#6370AA",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#AEC5D3",
           corner: 20,
           mouse:"pointer"
         })
@@ -609,6 +634,7 @@
           .ord(10);
 
           page3.backButton.on("mousedown", () => {
+            asset("click.wav").play();
           pages.go(page2, "left");
         });
 
@@ -631,7 +657,7 @@
           height: 100,
           backgroundColor: "orange",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#5C4A60",
           corner: 20,
           mouse:"pointer"
         })
@@ -641,6 +667,7 @@
         .pos(320, null);
 
         page3.nextButton.on("mousedown", () => {
+          asset("click.wav").play();
           pages.go(page4, "right");
         });
 
@@ -713,6 +740,10 @@
           .pos(null, 30)
           .drag();
 
+         mask.on("mouseover", function(e) {
+                        asset("hover.ogg").play();
+                    });
+
         var page4hit = new Rectangle(50, 50)
           .addTo(page4)
           .centerReg(content4).alp(0);
@@ -733,6 +764,7 @@
 
         mask.on("pressup", function (e) {
           if (mask.hitTestBounds(page4hit)) {
+          asset("correct.wav").play();
             var page4title = new Label({
               text:
                 "Make sure you, and the people around you,\nfollow good respiratory hygiene. This means\ncovering your mouth and nose with your \nbent elbow or tissue when you cough or  \nsneeze. Then dispose of the used tissue make\nyou sick.",
@@ -753,7 +785,7 @@
               })
               .addTo(page4)
               .scaleTo(content4, 70, 70)
-              .pos(null, 470, CENTER);
+              .pos(null, 500, CENTER);
 
   
 
@@ -779,9 +811,9 @@
           label: backText,
           width: 300,
           height: 100,
-          backgroundColor: "orange",
+          backgroundColor: "#6370AA",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#AEC5D3",
           corner: 20,
           mouse:"pointer"
         })
@@ -792,7 +824,7 @@
           .ord(10);
 
           page4.backButton.on("mousedown", () => {
-          // pages.go(page4, "right", "slide", 1000);
+          asset("click.wav").play();
           pages.go(page3, "left");
         });
 
@@ -815,7 +847,7 @@
           height: 100,
           backgroundColor: "orange",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor:"#5C4A60",
           corner: 20,
           mouse:"pointer"
         })
@@ -825,6 +857,7 @@
         .pos(320, null);
 
         page4.nextButton.on("mousedown", () => {
+          asset("click.wav").play();
           pages.go(page5, "right");
         });
 
@@ -892,13 +925,18 @@
           .centerReg(content5)
           .drag()
           .pos(115,null);
+
+          person1.on("mouseover", function(e) {
+                        asset("hover.ogg").play();
+                    });
      
         var person2 = asset("person2@2x.png")
           .sca(0.5)
           .addTo(page5)
           .centerReg(content5)
           // .pos(null, 30)
-          
+
+         
         
           var person3 = asset("person3@2x.png")
           .sca(0.5)
@@ -906,6 +944,10 @@
           .centerReg(content5)
           .pos(360, null)
           .drag();
+          
+          person3.on("mouseover", function(e) {
+                        asset("hover.ogg").play();
+                    });
 
           var seats = asset("seats@2x.png")
           .sca(0.5)
@@ -973,6 +1015,8 @@
 
         person3.on("pressup", function (e) {
           if (person3.hitTestBounds(page5hit2)) {
+          asset("positive.wav").play();
+
             var page5title = new Label({
               text:
                 "Maintain at least 1 metre (3 feet) distance\nfbetween yourself and anyone who is\ncoughing or sneezing. \nWhen someone coughs or sneezes they spray \nsmall liquid droplets from their nose or \nyou sick.mouth which may contain virus. ",
@@ -993,7 +1037,7 @@
               })
               .addTo(page5)
               .scaleTo(content5, 70, 70)
-              .pos(null, 470, CENTER);
+              .pos(null, 500, CENTER);
 
   
 
@@ -1019,9 +1063,9 @@
           label: backText,
           width: 300,
           height: 100,
-          backgroundColor: "orange",
+          backgroundColor: "#6370AA",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#AEC5D3",
           corner: 20,
           mouse:"pointer"
         })
@@ -1032,7 +1076,7 @@
           .ord(10);
 
           page5.backButton.on("mousedown", () => {
-          // pages.go(page4, "right", "slide", 1000);
+            asset("click.wav").play();
           pages.go(page4, "left");
         });
 
@@ -1055,7 +1099,7 @@
           height: 100,
           backgroundColor: "orange",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#5C4A60",
           corner: 20,
           mouse:"pointer"
         })
@@ -1065,6 +1109,7 @@
         .pos(320, null);
 
         page5.nextButton.on("mousedown", () => {
+          asset("click.wav").play();
           pages.go(page6, "right");
         });
 
@@ -1167,9 +1212,9 @@
           label: backText,
           width: 300,
           height: 100,
-          backgroundColor: "orange",
+          backgroundColor: "#6370AA",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#AEC5D3",
           corner: 20,
           mouse:"pointer"
         })
@@ -1180,7 +1225,7 @@
           .ord(10);
 
           page6.backButton.on("mousedown", () => {
-          // pages.go(page4, "right", "slide", 1000);
+            asset("click.wav").play();
           pages.go(page4, "left");
         });
 
@@ -1203,7 +1248,7 @@
           height: 100,
           backgroundColor: "orange",
           borderWidth: 0,
-          rollBackgroundColor: green,
+          rollBackgroundColor: "#5C4A60",
           corner: 20,
           mouse:"pointer"
         })
@@ -1213,6 +1258,7 @@
         .pos(320, null);
 
         page6.nextButton.on("mousedown", () => {
+          asset("click.wav").play();
           pages.go(page1, "right");
         });
 
