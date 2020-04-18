@@ -5,10 +5,10 @@
         id        = "com.danzen.tilty"
         version   = "3.0.1">
 
-    <name>Tilty</name>
+    <name>COVID-19 Tips</name>
 
     <description>
-        Mobile game to keep your device level while jostling others!
+        An app that provide information of protective meausres for againist COVID-19
     </description>
 
     <author href="http://danzen.com" email="support@danzen.com">
