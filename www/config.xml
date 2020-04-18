@@ -5,10 +5,10 @@
         id        = "com.danzen.tilty"
         version   = "3.0.1">
 
-    <name>COVID-19 Tips</name>
+    <name>Tilty</name>
 
     <description>
-        Mobile app that provide information of COVID-19 prevention tips!
+        Mobile game to keep your device level while jostling others!
     </description>
 
     <author href="http://danzen.com" email="support@danzen.com">
@@ -105,7 +105,7 @@
 		<icon src="icon/winphone/tileicon.png" width="173" height="173" role="background" />
 	</platform>
 
-   	<platform name="blackberry">
+   	<platform name="blackberry"><!-- probably not supported at this time in Build -->
     	<icon src="icon/blackberry/icon-80.png" width="80" height="80" />
 	</platform>
 
