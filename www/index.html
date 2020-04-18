@@ -1,119 +1,1279 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <title>ZIM - Pages</title>
-
-    <!-- Welcome to ZIM at https://zimjs.com - Code Creativity!                              -->
-    <!-- ZIM runs on the HTML Canvas powered by JavaScript and CreateJS https://createjs.com -->
-    <!-- Founded by Inventor Dan Zen - http://danzen.com - Canadian New Media Award Winner   -->
-    <!-- ZIM is free to use. You can donate to help improve ZIM at https://zimjs.com/donate  -->
-
+    <title>ZIM - Mobile</title>
     <script src="https://zimjs.org/cdn/1.2.4/createjs.js"></script>
     <script src="https://zimjs.org/cdn/10.8.0/zim.js"></script>
-    <!-- use zimjs.com/distill for minified individual functions! -->
-
     <script>
+      // https://zimjs.com - JavaScript Canvas Framework - Code Creativity!
+      let assets = [
+        "introBackground@2x.png",
+        "left-hand@2x.png",
+        "right-hand@2x.png",
+        "hands@2x.png",
+        "mask@2x.png",
+        "person1@2x.png",
+        "person2@2x.png",
+        "person3@2x.png",
+        "tap@2x.png",
+        "sick@2x.png",
+        "seats@2x.png",
+        "circle@2x.png",
+        "water@2x.png",
+        "star@2x.png",
+      ];
 
-        // SCALING OPTIONS
-        // scaling can have values as follows with full being the default
-        // "fit"    sets canvas and stage to dimensions and scales to fit inside window size
-        // "outside"    sets canvas and stage to dimensions and scales to fit outside window size
-        // "full"   sets stage to window size with no scaling
-        // "tagID"  add canvas to HTML tag of ID - set to dimensions if provided - no scaling
+      let path = "assets/";
 
-        const scaling = "full"; // this will resize to fit inside the screen dimensions
-        const width = null;
-        const height = null;
-        const color = green; // ZIM colors like green, blue, pink, faint, clear, etc.
-        const outerColor = dark; // any HTML colors like "violet", "#333", etc. are fine to use
+      const frame = new Frame(
+        "full",
+        null,
+        null,
+        "#C8D7EE",
+        "#C8D7EE",
+        assets,
+        path
+      );
+      frame.on("ready", () => {
+        const stage = frame.stage;
+        let stageW = frame.width;
+        let stageH = frame.height;
 
-        const frame = new Frame(scaling, width, height, color, outerColor);
-        frame.on("ready", () => { // ES6 Arrow Function - like function(){}
-            zog("ready from ZIM Frame"); // logs in console (F12 - choose console)
+        // put your code here
 
-            const stage = frame.stage;
-            let stageW = frame.width;
-            let stageH = frame.height;
+        // ********************
+        // ********************
+        //
+        //
+        //       PAGE1 
+        //    
+        //
+        // ********************
+        // ********************
 
-            // see https://zimjs.com/learn.html for video and code tutorials
-            // see https://zimjs.com/docs.html for documentation
-            // see https://zimjs.com/bits.html for 64 Interactive Media techniques
+        const layoutManager = new LayoutManager();
 
-            // put your code here (you can delete this sample code)
-            const page1 = new Container(stageW, stageH);
-            page1.backing = new Rectangle(page1.width, page1.height, dark).addTo(page1);
-            page1.triangle = new Triangle(160, 160, 160, white)
-                .rot(90)
-                .hov(1)
-                .rot(90)
-                .center(page1);
+    
+        const page1 = new Container(stageW, stageH).addTo();
 
-            page1.triangle.on("mousedown", () => {
-                // pages.go(page2, "right", "slide", 1000);
-                pages.go(page2, "right");
-            });
+        const header = new Container(500, 60).addTo(page1);
+        // new Rectangle(header.width, header.height, green).addTo(header);
+        // const title = new Label("LAYOUT!!").center(header);
+
+        const content = new Container(600, 800).addTo(page1);
+
+        const footer = new Container(500, 100).addTo(page1);
+      
+        var footerText = new Label({
+          text: "Made by Steve Yichen Li with ZIM.JS",
+          lineHeight: 70,
+          align: "center",
+          size: 32,
+          color: black,
+          //   font: "Solway",
+          //   paddingHorizontal: 80,
+          //   paddingVertical: 60,
+          corner: 20,
+
+          //   fontOptions: "bold",
+        })
+          .scaleTo(footer)
+          .center(footer)
+          .alp(0.4);
+
+        layoutManager.add(
+          new Layout(
+            page1,
+            [
+              {
+                object: header,
+                height: 10,
+                marginTop: 5,
+                valign: CENTER,
+                align: CENTER,
+                maxWidth: 80,
+              },
+              { object: content, marginTop: 5 },
+              {
+                object: footer,
+                marginTop: 5,
+                maxWidth: 50,
+                // backgroundColor: red,
+              },
+            ],
+            5,
+            "#C8D7EE",
+            true,
+            new Shape(),
+            stage
+          )
+        );
+
+        // const page1 = new Container(stageW,stageH);
+        // page1.backing = new Rectangle(page1.width, page1.height, dark).addTo(page1);
+
+        // frame.asset("introBackground@2x.png").sca(1).addTo(page1).center();
+
+        var intro = asset("introBackground@2x.png")
+          .sca(1)
+          .addTo(page1)
+          .centerReg(content);
+
+        var title = new Label({
+          text: "Protective Measures for \n Against COVID-19",
+          size: 30,
+          lineHeight: 40,
+          // font: "Kaushan Script",
+          color: "#5C3114",
+          fontOptions: "bold",
+
+          // paddingHorizontal: 80,
+          // paddingVertical: 30,
+          align: "center",
+        })
+          // .pos(600, 125, CENTER)
+          // .centerReg()
+          // .scaleTo(header, 130, 130)
+          .center(header)
+          .pos(null, 100)
+          .alp(0)
+          .animate({
+            props: {
+              alpha: 1,
+            },
+            wait: 200,
+          })
+          .addTo(page1);
+
+        var instructionBackground = new Rectangle({
+          width: 400,
+          height: 400,
+          corner: 45,
+          color: "#8E9DC6",
+        })
+          .centerReg(page1)
+          .pos(null, 280)
+          .ord(-1)
+          .alp(0.45)
+          .scaleTo(content, 190, 90)
+          .center(content);
+
+        var instructions = new Label({
+          text:
+            "COVID-19 is the infectious disease caused \n by the most recently discovered coronavirus. \nThis new virus and disease were unknown \nbefore the outbreak began in Wuhan, China,\n in December 2019.",
+          lineHeight: 70,
+          align: "center",
+          size: 20,
+          color: "#423447",
+          //   font: "Solway",
+
+          
+          // fontOptions: "bold",
+        })
+          .centerReg(page1)
+          .alp()
+          .pos(null, 300, CENTER)
+          // .scaleTo(content, 120, 120)
+          .center(content);
+
+        
+
+        var startText;
+        startText = new Label({
+          text: "START",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+          fontOptions: "bold",
+          // mouse:"pointer"
+        });
+
+        var startButton;
+
+        page1.startButton = new Button({
+          label: startText,
+          width: 400,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+        })
+          .hov(1)
+          .scaleTo(content, 60, 60)
+          .center(content)
+          .pos(null, 800);
+
+ 
+        page1.startButton.on("mousedown", () => {
+          // pages.go(page2, "right", "slide", 1000);
+          pages.go(page2, "right");
+        });
+
+        // ********************
+        // ********************
+        //
+        //
+        //       PAGE2 
+        //    
+        //
+        // ********************
+        // ********************
+
+        const page2 = new Container(stageW, stageH, "#C8D7EE");
+        const header2 = new Container(500, 150).addTo(page2);
+        // new Rectangle(header.width, header.height, green).addTo(header);
+        // const title = new Label("LAYOUT!!").center(header);
+
+        const content2 = new Container(600, 800).addTo(page2);
+
+        const footer2 = new Container(500, 100).addTo(page2);
+    
+    
+        layoutManager.add(
+          new Layout(
+            page2,
+            [
+              {
+                object: header2,
+                height: 10,
+                marginTop: 5,
+                valign: CENTER,
+                align: CENTER,
+                maxWidth: 80,
+              },
+              { object: content2, marginTop: 5 },
+              {
+                object: footer2,
+                marginTop: 5,
+                maxWidth: 50,
+                // backgroundColor: red,
+              },
+            ],
+            5,
+            "#C8D7EE",
+            true,
+            new Shape(),
+            stage
+          )
+        );
+
+        var circle = asset("circle@2x.png")
+          .sca(1.2)
+          .addTo(page2)
+          .centerReg(content2);
+
+       
+
+          var rightHand = asset("right-hand@2x.png")
+          .sca(0.7)
+          .addTo(page2)
+          .centerReg(content2)
+          .pos(200, null)
+          .drag();
+        
+        var leftHand = asset("left-hand@2x.png")
+          .sca(0.7)
+          .addTo(page2)
+          .centerReg(content2)
+          .pos(120, null)
+          .drag();
+            
+   
+
+        var star = asset("star@2x.png")
+          .sca(0.7)
+          .addTo(page2)
+          .centerReg(content2)
+          .alp(0);
+          
+
+        var hit = new Rectangle(50, stageH)
+          .addTo(page2)
+          .centerReg(content2)
+          .pos(500, null).alp(0);
+        var hit2 = new Rectangle(50, stageH,red)
+          .addTo(page2)
+          .centerReg(content2)
+          .pos(30, null).alp(0);
+
+        var h1 = new Label({
+          text: "Avoid Contact \n with Other People",
+          size: 30,
+          // font: "Kaushan Script",
+          color: "#5C3114",
+
+          align: "center",
+        })
+          .center(header2)
+          .pos(null, 200)
+          .addTo(page2);
+
+        
+
+          var h2= new Label({
+          text: "Take care of your health and protect\nothers by doing following:",
+          size: 20,
+          // font: "Kaushan Script",
+          color: "#5C3114",
+
+          align: "left",
+        })
+          .center(header2)
+          .pos(0, 0)
+          .addTo(page2);
 
 
-            const page2 = new Container(stageW, stageH);
-            page2.backing = new Rectangle(page2.width, page2.height, light).addTo(page2);
-            page2.triangle = new Triangle(160, 160, 160, dark)
-                .alp(.8)
-                .hov(1)
-                .rot(-90)
-                .center(page2);
-
-            page2.triangle.on("mousedown", () => {
-                // pages.go(page2, "right", "slide", 1000);
-                pages.go(page1, "left");
-            });
-
-            const pages = new Pages([
-                { page: page1, swipe: [page2, page2, "help", "help"] },
-                { page: page2, swipe: [page1, page1, "help", "help"] }
-            ], "slide", 700).addTo();
-
-            pages.on("help", () => {
-                if (pages.page == page2) {
-                    zogg("helping");
-                } else {
-                    zogr("helping");
-                }
-            });
-
-            frame.on("resize", () => {
-                stageW = frame.width;
-                stageH = frame.height;
-
-                page1.setBounds(stageW, stageH);
-                page1.backing.siz(stageW, stageH);
-                // page1.triangle.loc(stageW*.3, stageH*.3);
-                page1.triangle.center();
-
-                page2.setBounds(stageW, stageH);
-                page2.backing.siz(stageW, stageH);
-                page2.triangle.center();
-
-                pages.resize();
+        leftHand.on("pressup", function (e) {
+          if (leftHand.hitTestBounds(hit2)) {
+            var title = new Label({
+              text:
+                "Hands touch many surfaces and can  \npick up viruses. Once contaminated, \nhands can transfer the virus to your \neyes, nose or mouth.  From there, the \nvirus can  enter your body and can\n make you sick.",
+              size: 16,
+              // font: "Kaushan Script",
+              color: "#5C3114",
+              lineHeight: 30,
+              align: "left",
             })
 
+              .center(content2)
+              .alp(0)
+              .animate({
+                props: {
+                  alpha: 1,
+                },
+                wait: 200,
+              })
+              .addTo(page2)
+              .pos(null, 600, CENTER);
+
+            star.animate({
+              props: {
+                alpha: 1,
+              },
+              time: 800,
+            });
+
+            stage.update();
+          }
+        });
+
+        rightHand.on("pressup", function (e) {
+          if (rightHand.hitTestBounds(hit)) {
+            var title = new Label({
+              text:
+                "Hands touch many surfaces and can  \npick up viruses. Once contaminated, \nhands can transfer the virus to your \neyes, nose or mouth.  From there, the \nvirus can  enter your body and can\n make you sick.",
+              size: 16,
+              // font: "Kaushan Script",
+              color: "#5C3114",
+              lineHeight: 30,
+              align: "left",
+            })
+
+              .center(content2)
+              .alp(0)
+              .animate({
+                props: {
+                  alpha: 1,
+                },
+                wait: 200,
+              })
+              .addTo(page2)
+              .pos(null, 600, CENTER);
+              stage.update();
+
+            star.animate({
+              props: {
+                alpha: 1,
+              },
+              time: 800,
+            });
+
+            stage.update();
+          }
+        });
+
+        // back &next
+
+        var backText;
+        backText = new Label({
+          text: "Back",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+        });
+
+        var backButton;
+
+        page2.backButton = new Button({
+          label: backText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          // .hov(1)
+          // .scaleTo(footer2)
+          .center(footer2)
+          .pos(-100, null)
+          .ord(10);
+
+          page2.backButton.on("mousedown", () => {
+          // pages.go(page2, "right", "slide", 1000);
+          pages.go(page1, "left");
+        });
+
+        //nex
+
+        var nextText;
+        nextText = new Label({
+          text: "Next",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+          
+        });
+
+        var nextButton;
+
+        page2.nextButton = new Button({
+          label: nextText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          .hov(1)
+         
+          .center(footer2)
+        .pos(320, null);
+
+        page2.nextButton.on("mousedown", () => {
+          pages.go(page3, "right");
+        });
+
+
+        // ********************
+        // ********************
+        //
+        //
+        //       PAGE3
+        //    
+        //
+        // ********************
+        // ********************
+        const page3 = new Container(stageW, stageH, "#C8D7EE");
+        const header3 = new Container(500, 150).addTo(page3);
+        // new Rectangle(header.width, header.height, green).addTo(header);
+        // const title = new Label("LAYOUT!!").center(header);
+
+        const content3 = new Container(600, 800).addTo(page3);
+
+        const footer3 = new Container(500, 100).addTo(page3);
+        
+
+        layoutManager.add(
+          new Layout(
+            page3,
+            [
+              {
+                object: header3,
+                height: 10,
+                marginTop: 5,
+                valign: CENTER,
+                align: CENTER,
+                maxWidth: 80,
+              },
+              { object: content3, marginTop: 5 },
+              {
+                object: footer3,
+                marginTop: 5,
+                maxWidth: 50,
+                // backgroundColor: red,
+              },
+            ],
+            5,
+            "#C8D7EE",
+            true,
+            new Shape(),
+            stage
+          )
+        );
+
+        circle.clone().sca(1.2).addTo(page3).centerReg(content3);
+
+        
+
+    
+        var hands = asset("hands@2x.png")
+          .sca(0.6)
+          .addTo(page3)
+          .centerReg(content3)
+          .pos(190, null);
+
+        var water = asset("water@2x.png")
+          .sca(0.6)
+          .addTo(page3)
+          .centerReg(content3)
+          .pos(220, 260)
+          .alp(0);
+
+        var waterTap = asset("tap@2x.png")
+          .sca(0.6)
+          .addTo(page3)
+          .centerReg(content3)
+          .pos(300, 200)
+          .tap(function () {
+            water.animate({
+              props: {
+                alpha: 1,
+              },
+              time: 800,
+            });
+
+            var title = new Label({
+              text:
+                "Regularly and thoroughly clean your  \nhands with an alcohol-based hand \nrub or wash them with soap and water. \nWashing your hands with soap and water \nor using alcohol-based hand rub kills\n viruses that may be on your hands.",
+
+              size: 16,
+              // font: "Kaushan Script",
+              color: "#5C3114",
+              lineHeight: 30,
+              align: "left",
+            })
+
+              .center(content3)
+              .alp(0)
+              .animate({
+                props: {
+                  alpha: 1,
+                },
+                wait: 200,
+              })
+              .addTo(page3)
+              .pos(null, 600, CENTER);
+
+            stage.update();
+          });
+
+        var h1 = new Label({
+          text: "Wash Your \nHands Frequently",
+          size: 30,
+          // font: "Kaushan Script",
+          color: "#5C3114",
+
+          align: "center",
+        })
+
+          .center(header3)
+          .pos(null, 200)
+          .addTo(page3);
+
+        //back
+        var backText;
+        backText = new Label({
+          text: "Back",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+        
+        });
+
+        var backButton;
+
+        page3.backButton = new Button({
+          label: backText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+       
+          .center(footer3)
+          .pos(-100, null)
+          .ord(10);
+
+          page3.backButton.on("mousedown", () => {
+          pages.go(page2, "left");
+        });
+
+        //nex
+
+        var nextText;
+        nextText = new Label({
+          text: "Next",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+          
+        });
+
+        var nextButton;
+
+        page3.nextButton = new Button({
+          label: nextText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          .hov(1)
+         
+          .center(footer3)
+        .pos(320, null);
+
+        page3.nextButton.on("mousedown", () => {
+          pages.go(page4, "right");
+        });
+
+
+        // ********************
+        // ********************
+        //
+        //
+        //       PAGE4
+        //    
+        //
+        // ********************
+        // ********************
+
+
+        const page4 = new Container(stageW, stageH, "#C8D7EE");
+        const header4 = new Container(500, 150).addTo(page4);
+   
+        const content4 = new Container(600, 800).addTo(page4);
+
+        const footer4 = new Container(500, 100).addTo(page4);
+       
+
+        layoutManager.add(
+          new Layout(
+            page4,
+            [
+              {
+                object: header4,
+                height: 10,
+                marginTop: 5,
+                valign: CENTER,
+                align: CENTER,
+                maxWidth: 80,
+              },
+              { object: content4, marginTop: 5 },
+              {
+                object: footer4,
+                marginTop: 5,
+                maxWidth: 50,
+                // backgroundColor: red,
+              },
+            ],
+            5,
+            "#C8D7EE",
+            true,
+            new Shape(),
+            stage
+          )
+        );
+
+        circle.clone()
+          .sca(1.2)
+          .addTo(page4)
+          .centerReg(content4);
+
+       
+
+   
+        var sick = asset("sick@2x.png")
+          .sca(0.7)
+          .addTo(page4)
+          .centerReg(content4)
+          .pos(null, 200)
+     
+        var mask = asset("mask@2x.png")
+          .sca(0.7)
+          .addTo(page4)
+          .centerReg(content4)
+          .pos(null, 30)
+          .drag();
+
+        var page4hit = new Rectangle(50, 50)
+          .addTo(page4)
+          .centerReg(content4).alp(0);
+          // .pos(120, null);
+
+
+        var h1 = new Label({
+          text: "Practice respiratory hygiene",
+          size: 30,
+          // font: "Kaushan Script",
+          color: "#5C3114",
+
+          align: "center",
+        })
+          .center(header4)
+          .pos(null, 200)
+          .addTo(page4);
+
+        mask.on("pressup", function (e) {
+          if (mask.hitTestBounds(page4hit)) {
+            var page4title = new Label({
+              text:
+                "Make sure you, and the people around you,\nfollow good respiratory hygiene. This means\ncovering your mouth and nose with your \nbent elbow or tissue when you cough or  \nsneeze. Then dispose of the used tissue make\nyou sick.",
+              size: 16,
+              // font: "Kaushan Script",
+              color: "#5C3114",
+              lineHeight: 30,
+              align: "left",
+            })
+
+              .center(content4)
+              .alp(0)
+              .animate({
+                props: {
+                  alpha: 1,
+                },
+                wait: 200,
+              })
+              .addTo(page4)
+              .pos(null, 600, CENTER);
+
+  
+
+            stage.update();
+          }
+        });
+
+  
+
+          //back &next
+
+        var backText;
+        backText = new Label({
+          text: "Back",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+        });
+
+        var backButton;
+
+        page4.backButton = new Button({
+          label: backText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          // .hov(1)
+          // .scaleTo(footer4)
+          .center(footer4)
+          .pos(-100, null)
+          .ord(10);
+
+          page4.backButton.on("mousedown", () => {
+          // pages.go(page4, "right", "slide", 1000);
+          pages.go(page3, "left");
+        });
+
+        //nex
+
+        var nextText;
+        nextText = new Label({
+          text: "Next",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+          
+        });
+
+        var nextButton;
+
+        page4.nextButton = new Button({
+          label: nextText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          .hov(1)
+         
+          .center(footer4)
+        .pos(320, null);
+
+        page4.nextButton.on("mousedown", () => {
+          pages.go(page5, "right");
+        });
+
+
+                // ********************
+        // ********************
+        //
+        //
+        //       PAGE5
+        //    
+        //
+        // ********************
+        // ********************
+
+
+        const page5 = new Container(stageW, stageH, "#C8D7EE");
+        const header5 = new Container(500, 150).addTo(page5);
+        // new Rectangle(header.width, header.height, green).addTo(header);
+        // const title = new Label("LAYOUT!!").center(header);
+
+        const content5 = new Container(600, 800).addTo(page5);
+
+        const footer5 = new Container(500, 100).addTo(page5);
+       
+
+        layoutManager.add(
+          new Layout(
+            page5,
+            [
+              {
+                object: header5,
+                height: 10,
+                marginTop: 5,
+                valign: CENTER,
+                align: CENTER,
+                maxWidth: 80,
+              },
+              { object: content5, marginTop: 5 },
+              {
+                object: footer5,
+                marginTop: 5,
+                maxWidth: 50,
+                // backgroundColor: red,
+              },
+            ],
+            5,
+            "#C8D7EE",
+            true,
+            new Shape(),
+            stage
+          )
+        );
+
+        circle.clone()
+          .sca(1.2)
+          .addTo(page5)
+          .centerReg(content5);
+
+       
+
+   
+        var person1 = asset("person1@2x.png")
+          .sca(0.5)
+          .addTo(page5)
+          .centerReg(content5)
+          .drag()
+          .pos(115,null);
+     
+        var person2 = asset("person2@2x.png")
+          .sca(0.5)
+          .addTo(page5)
+          .centerReg(content5)
+          // .pos(null, 30)
+          
+        
+          var person3 = asset("person3@2x.png")
+          .sca(0.5)
+          .addTo(page5)
+          .centerReg(content5)
+          .pos(360, null)
+          .drag();
+
+          var seats = asset("seats@2x.png")
+          .sca(0.5)
+          .addTo(page5)
+          .centerReg(content5)
+          // .pos(null, 30)
+          // .drag();
+
+        // var page5hit = new Rectangle(50, stageH)
+        //   .addTo(page5)
+        //   .centerReg(content5)
+        //   .pos(10, null).alp(0);
+        
+          var page5hit2 = new Rectangle(50, stageH,red)
+          .addTo(page5)
+          .centerReg(content5)
+          .pos(540, null).alp(0);
+
+
+        var page5h1 = new Label({
+          text: "Maintain social distancing",
+          size: 30,
+          // font: "Kaushan Script",
+          color: "#5C3114",
+
+          align: "center",
+        })
+          .center(header5)
+          .pos(null, 200)
+          .addTo(page5);
+
+        // var count;
+        // page5.on("pressup", function (e) {
+     
+        
+        //   if (person2.hitTestBounds(page5hit)) {
+         
+                          
+        //     var title = new Label({
+        //       text:
+        //         "Make sure you, and the people around you,\nfollow good respiratory hygiene. This means\ncovering your mouth and nose with your \nbent elbow or tissue when you cough or  \nsneeze. Then dispose of the used tissue make\nyou sick.",
+        //       size: 16,
+        //       // font: "Kaushan Script",
+        //       color: "#5C3114",
+        //       lineHeight: 30,
+        //       align: "left",
+        //     })
+
+        //       .center(content5)
+        //       .alp(0)
+        //       .animate({
+        //         props: {
+        //           alpha: 1,
+        //         },
+        //         wait: 200,
+        //       })
+        //       .addTo(page5)
+        //       .pos(null, 1000, CENTER);
+
+
+        //     stage.update();
+        //   }
+        
+        // });
+
+        person3.on("pressup", function (e) {
+          if (person3.hitTestBounds(page5hit2)) {
+            var page5title = new Label({
+              text:
+                "Maintain at least 1 metre (3 feet) distance\nfbetween yourself and anyone who is\ncoughing or sneezing. \nWhen someone coughs or sneezes they spray \nsmall liquid droplets from their nose or \nyou sick.mouth which may contain virus. ",
+              size: 16,
+              // font: "Kaushan Script",
+              color: "#5C3114",
+              lineHeight: 30,
+              align: "left",
+            })
+
+              .center(content5)
+              .alp(0)
+              .animate({
+                props: {
+                  alpha: 1,
+                },
+                wait: 200,
+              })
+              .addTo(page5)
+              .pos(null, 600, CENTER);
+
+  
+
+            stage.update();
+          }
+        });
+
+  
+
+        // back &next
+
+        var backText;
+        backText = new Label({
+          text: "Back",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+        });
+
+        var backButton;
+
+        page5.backButton = new Button({
+          label: backText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          // .hov(1)
+          // .scaleTo(footer5)
+          .center(footer5)
+          .pos(-100, null)
+          .ord(10);
+
+          page5.backButton.on("mousedown", () => {
+          // pages.go(page4, "right", "slide", 1000);
+          pages.go(page4, "left");
+        });
+
+        //nex
+
+        var nextText;
+        nextText = new Label({
+          text: "Next",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+          
+        });
+
+        var nextButton;
+
+        page5.nextButton = new Button({
+          label: nextText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          .hov(1)
+         
+          .center(footer5)
+        .pos(320, null);
+
+        page5.nextButton.on("mousedown", () => {
+          pages.go(page6, "right");
+        });
+
+                        // ********************
+        // ********************
+        //
+        //
+        //       PAGE6
+        //    
+        //
+        // ********************
+        // ********************
+
+
+        const page6 = new Container(stageW, stageH, "#C8D7EE");
+        const header6 = new Container(500, 150).addTo(page6);
+        // new Rectangle(header.width, header.height, green).addTo(header);
+        // const title = new Label("LAYOUT!!").center(header);
+
+        const content6= new Container(600, 800).addTo(page6);
+
+        const footer6 = new Container(500, 100).addTo(page6);
+       
+
+        layoutManager.add(
+          new Layout(
+            page6,
+            [
+              {
+                object: header6,
+                height: 10,
+                marginTop: 5,
+                valign: CENTER,
+                align: CENTER,
+                maxWidth: 80,
+              },
+              { object: content6, marginTop: 5 },
+              {
+                object: footer6,
+                marginTop: 5,
+                maxWidth: 50,
+                // backgroundColor: red,
+              },
+            ],
+            5,
+            "#C8D7EE",
+            true,
+            new Shape(),
+            stage
+          )
+        );
+        var page6h1 = new Label({
+          text: "Stay Safe",
+          size: 45,
+          // font: "Kaushan Script",
+          color: "#5C3114",
+
+          align: "center",
+        })
+          .center(header6)
+          .pos(null, 200)
+          .addTo(page6);
+
+        var ending = new Label({
+          text:
+            "Stay informed on the latest developments about COVID-19.\nFollow advice given by your healthcare provider, your national\n and local public health authority or your employer on how\nto protect yourself and others from COVID-19.",
+          lineHeight: 70,
+          align: "left",
+          size: 20,
+          color: "#423447",
+          //   font: "Solway",
+
+          corner: 20,
+          // fontOptions: "bold",
+        })
+          .centerReg(page6)
+          .pos(null, 100)
+          // .scaleTo(content, 120, 120)
+          .center(content6);
+
+       
+
+   
+        
+  
+
+        // back &next
+
+        var backText;
+        backText = new Label({
+          text: "Back",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+        });
+
+        var backButton;
+
+        page6.backButton = new Button({
+          label: backText,
+          width: 300,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          // .hov(1)
+          // .scaleTo(footer6)
+          .center(footer6)
+          .pos(-100, null)
+          .ord(10);
+
+          page6.backButton.on("mousedown", () => {
+          // pages.go(page4, "right", "slide", 1000);
+          pages.go(page4, "left");
+        });
+
+        //nex
+
+        var nextText;
+        nextText = new Label({
+          text: "Back to Home",
+          size: 48,
+          //   font: "Kaushan Script",
+          color: white,
+          
+        });
+
+        var nextButton;
+
+        page6.nextButton = new Button({
+          label: nextText,
+          width: 350,
+          height: 100,
+          backgroundColor: "orange",
+          borderWidth: 0,
+          rollBackgroundColor: green,
+          corner: 20,
+          mouse:"pointer"
+        })
+          .hov(1)
+         
+          .center(footer6)
+        .pos(320, null);
+
+        page6.nextButton.on("mousedown", () => {
+          pages.go(page1, "right");
+        });
 
 
 
 
-            stage.update(); // this is needed to show any changes
 
-        }); // end of ready
 
+
+        // PAGES
+        //
+        //
+        //
+        const pages = new Pages(
+          // swipe:["right", "left", "down", "up"]
+          [
+            { page: page1, swipe: [page2, page2, "help", "help"] },
+            { page: page2, swipe: [page1, page1, "help", "help"] },
+            { page: page3, swipe: [page2, null, null, null] },
+            { page: page4, swipe: [page3, null, null, null] },
+            { page: page5, swipe: [page4, null, null, null] },
+            { page: page6, swipe: [page4, null, null, null] },
+            // { page: page3, swipe: [page2, null, null, null] },
+          ],
+          "slide",
+          700
+        ).addTo();
+
+        pages.on("help", () => {
+          if (pages.page == page2) {
+            zogg("helping");
+          } else {
+            zogr("helping");
+          }
+        });
+
+        frame.on("resize", () => {
+          stageW = frame.width;
+          stageH = frame.height;
+
+          page1.setBounds(stageW, stageH);
+          page1.backing.siz(stageW, stageH);
+          // page1.triangle.loc(stageW*.3, stageH*.3);
+          // page1.triangle.center();
+
+          page2.setBounds(stageW, stageH);
+          page2.backing.siz(stageW, stageH);
+          // page2.triangle.center();
+
+          page3.setBounds(stageW, stageH);
+          page3.backing.siz(stageW, stageH);
+
+          pages.resize();
+        });
+
+        layoutManager.dispose();
+        frame.on("resize", () => {
+          stageW = frame.width;
+          stageH = frame.height;
+          layoutManager.resize();
+        });
+        //
+        //
+        //
+        stage.update();
+      });
     </script>
-
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-
-</head>
-
-<body>
-    <!-- canvas with id="myCanvas" is made by zim Frame -->
-</body>
-
+  </head>
+  <body></body>
 </html>
